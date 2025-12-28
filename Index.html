@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Key of Today</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #1e90ff;
+            padding: 14px 26px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: rgba(30,144,255,0.15);
+        }
+
+        .key {
+            margin-top: 20px;
+            font-size: 20px;
+            user-select: all;
+        }
+
+        .hint {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button onclick="showKey()">Gerar Key</button>
+
+    <div class="key" id="keyText"></div>
+    <div class="hint">Clique na key para copiar</div>
+</div>
+
+<script>
+    const keys = [
+        "FREE67_581204","FREE67_991040","FREE67_480392","FREE67_549128","FREE67_103995","FREE67_447812",
+        "FREE67_662031","FREE67_799204","FREE67_932152","FREE67_251908","FREE67_710249","FREE67_648301",
+        "FREE67_110548","FREE67_923004","FREE67_888420","FREE67_736194","FREE67_335802","FREE67_529340",
+        "FREE67_008429","FREE67_974015","FREE67_441802","FREE67_557002","FREE67_900381","FREE67_449220",
+        "FREE67_771244","FREE67_402998","FREE67_199480","FREE67_514800","FREE67_820304","FREE67_605994",
+        "FREE67_732814","FREE67_823120","FREE67_550481","FREE67_200855","FREE67_594392","FREE67_284009",
+        "FREE67_655011","FREE67_902814","FREE67_771901","FREE67_512904","FREE67_399124","FREE67_258640",
+        "FREE67_004821","FREE67_889450","FREE67_228117","FREE67_096542","FREE67_446758","FREE67_710924",
+        "FREE67_532004","FREE67_239915","FREE67_581002","FREE67_104880","FREE67_777248","FREE67_118304",
+        "FREE67_488221","FREE67_690542","FREE67_883001","FREE67_724510","FREE67_540201","FREE67_990205",
+        "FREE67_821009","FREE67_602288","FREE67_557194","FREE67_109440","FREE67_991884","FREE67_443001",
+        "FREE67_118200","FREE67_663900","FREE67_014590","FREE67_551290","FREE67_982105","FREE67_321007",
+        "FREE67_420785","FREE67_990004","FREE67_410028","FREE67_229900","FREE67_004581","FREE67_740318",
+        "FREE67_420100","FREE67_100003","FREE67_888291","FREE67_611220","FREE67_202582","FREE67_258111",
+        "FREE67_440984","FREE67_890221","FREE67_503110","FREE67_557711","FREE67_004990","FREE67_338882",
+        "FREE67_290310","FREE67_010058","FREE67_509402","FREE67_884002","FREE67_720944","FREE67_300584",
+        "FREE67_119900","FREE67_989044","FREE67_660208","FREE67_010524","FREE67_701129","FREE67_448812"
+    ];
+
+    function keyOfToday() {
+        const now = new Date(Date.now() - 3 * 60 * 60 * 1000); // Brasília
+        const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+        const index = seed % keys.length;
+        return keys[index];
+    }
+
+    function showKey() {
+        const key = keyOfToday();
+        const el = document.getElementById("keyText");
+        el.textContent = key;
+
+        el.onclick = () => {
+            navigator.clipboard.writeText(key);
+        };
+    }
+</script>
+
+</body>
+</html>
